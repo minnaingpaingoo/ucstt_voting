@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ucstt_voting/admin/voting_analytics.dart';
+import 'package:ucstt_voting/services/database.dart';
 
 class MasterSetting extends StatefulWidget {
   const MasterSetting({super.key});
@@ -8,7 +10,25 @@ class MasterSetting extends StatefulWidget {
 }
 
 class _MasterSettingState extends State<MasterSetting> {
-  bool isVoteClosed = false; // Tracks the status of the voting system
+
+  bool isVoteClosed= false;
+
+  Future<void> fetchInitialVoteStatus() async {
+  try {
+    bool status = await DatabaseMethods().getCloseVoteStatus();
+    setState(() {
+      isVoteClosed = status; // Update the state with the fetched value
+    });
+  } catch (e) {
+    print("Error fetching vote status: $e");
+  }
+}
+
+  @override
+  void initState() {
+    super.initState();
+    fetchInitialVoteStatus();
+  }
 
   // Additional features can be added here
   @override
@@ -30,12 +50,11 @@ class _MasterSettingState extends State<MasterSetting> {
               description:
                   "Enable or disable the voting system. If 'On,' users cannot cast votes.",
               value: isVoteClosed,
-              onChanged: (value) {
+              onChanged: (value) async{
                 setState(() {
                   isVoteClosed = value;
-                  // Save the setting to a database if required
-                  // Example: DatabaseMethods().updateVoteStatus(value);
                 });
+                await DatabaseMethods().closeVote(isVoteClosed);
               },
             ),
             const SizedBox(height: 20),
@@ -43,11 +62,11 @@ class _MasterSettingState extends State<MasterSetting> {
             // Placeholder for other features
             buildActionFeature(
               icon: Icons.analytics,
-              title: "View Voting Analytics",
-              description: "Analyze voter participation and other metrics.",
+              title: "Voting User Analytics",
+              description: "View voter participation and other metrics.",
               onTap: () {
                 // Navigate to the analytics page
-                // Example: Navigator.push(context, MaterialPageRoute(builder: (context) => AnalyticsPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const VotingAnalytics()));
               },
             ),
             const SizedBox(height: 20),

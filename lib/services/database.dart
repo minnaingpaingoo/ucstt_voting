@@ -22,8 +22,16 @@ class DatabaseMethods{
     return await FirebaseFirestore.instance.collection('Users').get();
   }
 
-  Future getNumberOfVotedUser() async{
-    return await FirebaseFirestore.instance.collection('VoteList').get();
+  Future<int> getNumberOfSecretCode() async {
+    final snapshot = await FirebaseFirestore.instance.collection('GenerateCode').get();
+    return snapshot.docs.length; // Return the count of secret codes
+  }
+
+  Future<QuerySnapshot> getNumberOfVotedUser() async {
+    return await FirebaseFirestore.instance
+        .collection('Users')
+        .where('Voted', isEqualTo: 2)
+        .get();
   }
 
   Stream<List<Map<String, dynamic>>> getCategoriesStream() {
@@ -242,11 +250,18 @@ class DatabaseMethods{
       .snapshots();
   }
 
+  Future<QuerySnapshot<Map<String, dynamic>>> getAllUsers() {
+    return FirebaseFirestore.instance
+      .collection('Users')
+      .get();
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> fetchVotedList(String userId) {
     return FirebaseFirestore.instance
       .collection('VoteList')
       .doc(userId)
       .collection('Vote')
+      .orderBy('SelectionCode')
       .snapshots();
   }
 
@@ -312,6 +327,15 @@ class DatabaseMethods{
       });
   }
 
+   Future updateUserVoteCount(String userId) async{
+    return await FirebaseFirestore.instance
+      .collection('Users')
+      .doc(userId)
+      .update({
+        'Voted': FieldValue.increment(1),
+      });
+  }
+
   Future saveVoteData(String userId, Map<String, dynamic> voteData) async{
     return await FirebaseFirestore.instance
       .collection('VoteList')
@@ -326,6 +350,62 @@ class DatabaseMethods{
       .doc(userId)
       .collection('Vote')
       .get();
+  }
+
+  Future closeVote(bool status) async{
+    return await FirebaseFirestore.instance
+      .collection('CloseVote')
+      .doc('close')
+      .set({"Status": status});
+  }
+
+  Future<bool> getCloseVoteStatus() async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection('CloseVote')
+        .doc('close')
+        .get();
+
+    if (snapshot.exists && snapshot.data() != null) {
+      return snapshot.data()?['Status'] ?? false; // Default to false if not found
+    }
+
+    return false; // Default to false if document doesn't exist
+  }
+
+ Future<String?> getCategoryNameById(String categoryId) async {
+    try {
+      final docSnapshot = await FirebaseFirestore.instance
+          .collection('Categories')
+          .doc(categoryId)
+          .get();
+
+      if (docSnapshot.exists) {
+        return docSnapshot.data()?['CategoryName']; // Replace 'name' with the field containing the category name in your database.
+      } else {
+        return null; // Document doesn't exist.
+      }
+    } catch (e) {
+      print("Error fetching category name: $e");
+      return null; // Handle error gracefully.
+    }
+  }
+
+  Future<String?> getUserNameById(String userId) async {
+    try {
+      final docSnapshot = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userId)
+          .get();
+
+      if (docSnapshot.exists) {
+        return docSnapshot.data()?['Name']; // Replace 'name' with the field containing the category name in your database.
+      } else {
+        return null; // Document doesn't exist.
+      }
+    } catch (e) {
+      print("Error fetching user name: $e");
+      return null; // Handle error gracefully.
+    }
   }
 
 }

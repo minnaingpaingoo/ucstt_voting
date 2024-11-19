@@ -23,11 +23,13 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   String? userId;
   bool isProcessing = false;
+  bool isClose = false;
 
   @override
   void initState() {
     super.initState();
     loadUserId();
+    fetchCloseStatus();
   }
 
   Future<void> loadUserId() async {
@@ -120,7 +122,9 @@ class _DetailsState extends State<Details> {
               "SecretCode": secretCode,
               "VotedAt": FieldValue.serverTimestamp(),
             };
+            
             //Update and Save Data
+            await DatabaseMethods().updateUserVoteCount(userId!);
             await DatabaseMethods().updateSecretCodeStatus(secretCode, "Voted");
             await DatabaseMethods().saveVoteData(userId!, voteData);
             await DatabaseMethods().updateVoteCount(widget.categoryId, widget.selectionId);
@@ -163,9 +167,20 @@ class _DetailsState extends State<Details> {
     );
   }
 
+  Future<void> fetchCloseStatus() async {
+    try {
+     bool status = await DatabaseMethods().getCloseVoteStatus();
+    setState(() {
+      isClose = status; // Update the state with the fetched value
+    });
+    } catch (e) {
+      print("Error fetching close status: $e");
+    }
+  }
+
   Widget buildVoteButton() {
     return ElevatedButton(
-      onPressed: isProcessing
+      onPressed: isProcessing || isClose
           ? null
           : () async {
               if (userId == null) {
@@ -184,12 +199,12 @@ class _DetailsState extends State<Details> {
         backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Vote", style: TextStyle(color: Colors.white, fontSize: 16)),
-          SizedBox(width: 10),
-          Icon(Icons.how_to_vote, color: Colors.white),
+          Text( isClose ? "Voting Closed" : "Vote", style: const TextStyle(color: Colors.white, fontSize: 16)),
+          const SizedBox(width: 10),
+          const Icon(Icons.how_to_vote, color: Colors.white),
         ],
       ),
     );

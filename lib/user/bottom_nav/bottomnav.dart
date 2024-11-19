@@ -299,6 +299,7 @@ class BottomNavState extends State<BottomNav> {
           "Email": email!,
           "Class": className!,
           "Id": userId,
+          "Voted": 0,
         };
         //Save to the firestore
         await DatabaseMethods().addUserDetail(addUserInfo, userId);
@@ -648,6 +649,7 @@ class BottomNavState extends State<BottomNav> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
+            
             'Hello, ${name ?? 'User'}',
             style: TextStyle(
               fontSize: 20,

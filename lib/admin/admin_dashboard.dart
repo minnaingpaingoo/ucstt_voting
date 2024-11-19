@@ -41,13 +41,15 @@ class _AdminDashboardState extends State<AdminDashboard> {
     numberOfUsers = usersSnapshot.docs.length;
 
     // Fetch number of voted users
-    final votedUsersSnapshot = await DatabaseMethods().getNumberOfVotedUser();
+    final  QuerySnapshot votedUsersSnapshot = await DatabaseMethods().getNumberOfVotedUser();
     numberOfVotedUsers = votedUsersSnapshot.docs.length;
 
     print("Number of Voted Users");
     print(numberOfVotedUsers);
 
+  if (mounted) {
     setState(() {});
+    }
   }
 
   @override
