@@ -8,7 +8,7 @@ class TermsAndConditions extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Terms & Conditions'),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.black,
         centerTitle: true,
       ),
       body: _termsAndConditionsBody(),

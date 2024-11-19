@@ -593,8 +593,8 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 10),
           infoRow(
             icon: Icons.home,
-            title: "Developer Address",
-            value: "Developed by Min Naing Paing Oo. \nContact: naingpaingoo@gmail.com",
+            title: "Developed by Min Naing Paing Oo",
+            value: "naingpaingoo@gmail.com",
           ),
           const SizedBox(height: 10),
           buildActionRow(
