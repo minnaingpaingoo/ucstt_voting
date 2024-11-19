@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:ucstt_voting/services/shared_pref.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -20,33 +22,33 @@ class _HomeState extends State<Home> {
   int kingPage = 0;
   int queenPage = 0;
   int kingQueenPrincePrincessLastYearPage = 0;
-
+  String? name;
   final List<Map<String, String>> kingQueenSelection = [
-    {"name": "Khun Yar Pyae", "image": "images/king.jpg"},
-    {"name": "Yamone Htet", "image": "images/queen.jpg"},
+    {"name": "King: Khun Yar Pyae", "image": "images/king.jpg"},
+    {"name": "Queen: Yamone Htet", "image": "images/queen.jpg"},
   ];
 
   final List<Map<String, String>> princePrincessSelection = [
-    {"name": "Nay Lin Oo", "image": "images/prince.jpg"},
-    {"name": "Zin Wai Htun", "image": "images/princess.jpg"},
+    {"name": "Prince: Nay Lin Oo", "image": "images/prince.jpg"},
+    {"name": "Princess: Zin Wai Htun", "image": "images/princess.jpg"},
   ];
 
   final List<Map<String, String>> kingSelection = [
-    {"name": "Khun Yar Pyae", "image": "images/king.jpg"},
-    {"name": "Nay Lin Oo", "image": "images/prince.jpg"},
-    {"name": "Seckyar Thurein Thee", "image": "images/seckyar_thurein_thee.jpg"},
-    {"name": "Kaung Htet Thu", "image": "images/kaung_htet_thu.jpg"},
-    {"name": "Nyam Htet", "image": "images/nyam_htet.jpg"},
-    {"name": "Kyaw Zin Win", "image": "images/kyaw_zin_win.jpg"},
+    {"name": "2nd Year King: Khun Yar Pyae", "image": "images/king.jpg"},
+    {"name": "2nd Year Prince: Nay Lin Oo", "image": "images/prince.jpg"},
+    {"name": "3rd Year King: Seckyar Thurein Thee", "image": "images/seckyar_thurein_thee.jpg"},
+    {"name": "3rd Year Prince: Kaung Htet Thu", "image": "images/kaung_htet_thu.jpg"},
+    {"name": "3rd Year King: Nyam Htet", "image": "images/nyam_htet.jpg"},
+    {"name": "3rd Year Prince: Kyaw Zin Win", "image": "images/kyaw_zin_win.jpg"},
   ];
 
   final List<Map<String, String>> queenSelection = [
-    {"name": "Yamone Htet", "image": "images/queen.jpg"},
-    {"name": "Zin Wai Htun", "image": "images/princess.jpg"},
-    {"name": "Htet Htet Yamin Oo", "image": "images/htet_htet_yamin_oo.jpg"},
-    {"name": "Moe Moe Htet", "image": "images/moe_moe_htet.jpg"},
-    {"name": "Nway Thuzar Hlaing", "image": "images/nway_thuzar_hlaing.jpg"},
-    {"name": "Shoon Lei Phyu", "image": "images/shoon_lei_phyu.jpg"},
+    {"name": "2nd Year Queen: Yamone Htet", "image": "images/queen.jpg"},
+    {"name": "2nd Year Princess: Zin Wai Htun", "image": "images/princess.jpg"},
+    {"name": "3rd Year Queen: Htet Htet Yamin Oo", "image": "images/htet_htet_yamin_oo.jpg"},
+    {"name": "3rd Year Princess: Moe Moe Htet", "image": "images/moe_moe_htet.jpg"},
+    {"name": "3rd Year Queen: Nway Thuzar Hlaing", "image": "images/nway_thuzar_hlaing.jpg"},
+    {"name": "3rd Year Princess: Shoon Lei Phyu", "image": "images/shoon_lei_phyu.jpg"},
   ];
 
   final List<Map<String, String>> kingQueenPrincePrincessLastYear = [
@@ -56,9 +58,14 @@ class _HomeState extends State<Home> {
     {"name": "Princess: Zin Wai Htun", "image": "images/princess.jpg"},
   ]; 
 
+  sharedpref() async{
+    name = await SharedPreferenceHelper().getUserName();
+  }
+
   @override
   void initState() {
     super.initState();
+    sharedpref();
 
     kingController = PageController(initialPage: 0);
     queenController = PageController(initialPage: 0);
@@ -211,6 +218,45 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+  Widget developerAddress() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(10), // Rounded corners for the card
+        ),
+        padding: const EdgeInsets.all(16),
+        child: const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Developed by: Min Naing Paing Oo",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white, // Text color
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              "Contact: naingpaingoo@gmail.com",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white, // Text color
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   
   @override
   Widget build(BuildContext context) {
@@ -272,7 +318,10 @@ class _HomeState extends State<Home> {
                 ),
               ),
               _bigCard(
-                  "Prince & Princess", isPrincePrincessRevealed, princePrincessSelection),       
+                  "Prince & Princess", isPrincePrincessRevealed, princePrincessSelection),  
+
+              if(name == null)
+                developerAddress(),     
             ],
           ),
         ),

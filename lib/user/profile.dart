@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ucstt_voting/services/database.dart';
 import 'package:ucstt_voting/services/shared_pref.dart';
 import 'package:ucstt_voting/user/bottom_nav/bottomnav.dart';
+import 'package:ucstt_voting/user/terms_and_conditions.dart';
 import 'package:ucstt_voting/user/voted_list.dart';
     
 class Profile extends StatefulWidget {
@@ -337,6 +338,10 @@ class _ProfileState extends State<Profile> {
     );
   }
 
+  Future <void> termsAndConditions(BuildContext context)async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TermsAndConditions()));
+  }
+
   Future<void> changePassword(BuildContext context) async {
     final formKey = GlobalKey<FormState>();
     final TextEditingController currentPasswordController = TextEditingController();
@@ -573,11 +578,23 @@ class _ProfileState extends State<Profile> {
             label: "Your Voted List",
             onTap: () => votedList(context),
           ),
-           const SizedBox(height: 10),
+          const SizedBox(height: 10),
           buildActionRow(
             icon: Icons.settings,
             label: "Change Password",
             onTap: () => changePassword(context),
+          ),
+          const SizedBox(height: 10),
+          buildActionRow(
+            icon: Icons.edit_document,
+            label: "Terms & Conditions",
+            onTap: () => termsAndConditions(context),
+          ),
+          const SizedBox(height: 10),
+          infoRow(
+            icon: Icons.home,
+            title: "Developer Address",
+            value: "Developed by Min Naing Paing Oo. \nContact: naingpaingoo@gmail.com",
           ),
           const SizedBox(height: 10),
           buildActionRow(
