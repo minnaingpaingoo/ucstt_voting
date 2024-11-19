@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ucstt_voting/admin/generate_secret_code.dart';
+import 'package:ucstt_voting/admin/secret_code_list.dart';
+import 'package:ucstt_voting/admin/view_all_selections_list.dart';
 import 'package:ucstt_voting/admin/voting_analytics.dart';
 import 'package:ucstt_voting/services/database.dart';
 
@@ -59,14 +62,46 @@ class _MasterSettingState extends State<MasterSetting> {
             ),
             const SizedBox(height: 20),
 
-            // Placeholder for other features
+            buildActionFeature(
+              icon: Icons.generating_tokens,
+              title: "Generate Secret Code",
+              description: "Generate Random Secret Code for voting in this system.",
+              onTap: () {
+                // Navigate to the user voting analytics page
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const GenerateSecretCode()));
+              },
+            ),
+            const SizedBox(height: 20),
+
+            buildActionFeature(
+              icon: Icons.token,
+              title: "Secret Code List",
+              description: "View secret code list and approval function by admin.",
+              onTap: () {
+                // Navigate to the user voting analytics page
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const SecretCodeList()));
+              },
+            ),
+            const SizedBox(height: 20),
+
             buildActionFeature(
               icon: Icons.analytics,
               title: "Voting User Analytics",
               description: "View voter participation and other metrics.",
               onTap: () {
-                // Navigate to the analytics page
+                // Navigate to the user voting analytics page
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const VotingAnalytics()));
+              },
+            ),
+            const SizedBox(height: 20),
+
+            buildActionFeature(
+              icon: Icons.list,
+              title: "View All Selections List",
+              description: "View selection vote count.",
+              onTap: () {
+                // Navigate to view all selections list
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewAllSelectionsList()));
               },
             ),
             const SizedBox(height: 20),

@@ -602,6 +602,7 @@ class _ProfileState extends State<Profile> {
             label: "Delete Account",
             onTap: () => deleteAccount(context),
           ),
+          const SizedBox(height: 10),
         ],
       ),
     );

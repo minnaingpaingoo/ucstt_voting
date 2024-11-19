@@ -60,6 +60,9 @@ class _HomeState extends State<Home> {
 
   sharedpref() async{
     name = await SharedPreferenceHelper().getUserName();
+    setState(() {
+      
+    });
   }
 
   @override

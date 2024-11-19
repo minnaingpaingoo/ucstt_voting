@@ -225,13 +225,13 @@ class DatabaseMethods{
       });
   }
 
-  Stream<QuerySnapshot<Object?>> getTopThreeSelection(String categoryId){
+  Stream<QuerySnapshot<Object?>> getTopFiveSelection(String categoryId){
     return FirebaseFirestore.instance
       .collection('Categories')
       .doc(categoryId)
       .collection('Selections')
       .orderBy('Votes', descending: true)
-      .limit(3)
+      .limit(5)
       .snapshots();
   }
 

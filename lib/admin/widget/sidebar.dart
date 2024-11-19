@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:ucstt_voting/admin/add_category.dart';
 import 'package:ucstt_voting/admin/add_selection.dart';
-import 'package:ucstt_voting/admin/generate_secret_code.dart';
 import 'package:ucstt_voting/admin/manage_category.dart';
 import 'package:ucstt_voting/admin/manage_selection.dart';
 import 'package:ucstt_voting/admin/master_setting.dart';
-import 'package:ucstt_voting/admin/secret_code_list.dart';
 import 'package:ucstt_voting/admin/user_list.dart';
 import 'package:ucstt_voting/services/shared_pref.dart';
 import 'package:ucstt_voting/user/bottom_nav/bottomnav.dart';
@@ -78,20 +76,6 @@ class _SidebarState extends State<Sidebar> {
               title: const Text('User List'),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> const UserList()));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.generating_tokens),
-              title: const Text('Generate Secret Code'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const GenerateSecretCode()));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.token),
-              title: const Text('Secret Code List'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const SecretCodeList()));
               },
             ),
              ListTile(
