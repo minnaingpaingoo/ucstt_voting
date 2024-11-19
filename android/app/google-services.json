@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "818735150264",
+    "project_id": "ucstt-voting",
+    "storage_bucket": "ucstt-voting.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818735150264:android:ddc011cef74474bfaf304d",
+        "android_client_info": {
+          "package_name": "com.example.ucstt_voting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfHFZ_bcl-Z-RMfoysauL_JvcMQL2XI9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
