@@ -94,7 +94,7 @@ class _VotedListState extends State<VotedList> {
         ),
       ),
       body: votedItems.isEmpty
-        ? const Center(child: CircularProgressIndicator())
+        ? const Center(child: Text("No vote list Found.", style: TextStyle(fontSize: 18)))
         : ListView.builder(
             itemCount: votedItems.length,
             itemBuilder: (context, index) {
