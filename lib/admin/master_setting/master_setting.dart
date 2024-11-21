@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ucstt_voting/admin/master_setting/generate_secret_code.dart';
 import 'package:ucstt_voting/admin/master_setting/import_winner_result.dart';
+import 'package:ucstt_voting/admin/master_setting/manage_winner_result.dart';
 import 'package:ucstt_voting/admin/master_setting/secret_code_list.dart';
 import 'package:ucstt_voting/admin/master_setting/view_all_selections_list.dart';
 import 'package:ucstt_voting/admin/master_setting/voting_analytics.dart';
@@ -131,6 +132,17 @@ class _MasterSettingState extends State<MasterSetting> {
               onTap: () {
                 // Navigate to the import winnner result
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ImportWinnerResult()));
+              },
+            ),
+            const SizedBox(height: 20),
+
+            buildActionFeature(
+              icon: Icons.manage_history_outlined,
+              title: "Manage Winner Result",
+              description: "Manage King, Queen, Prince & Princess Result if have any problem.",
+              onTap: () {
+                // Navigate to the import winnner result
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ManageWinnerResult()));
               },
             ),
             const SizedBox(height: 20),

@@ -137,7 +137,7 @@ class _VoteState extends State<Vote> {
           return SizedBox(
             height: 400,
             child: ListView.builder(
-              padding: const EdgeInsets.only(bottom: 50),
+              padding: const EdgeInsets.only(bottom: 30),
               itemCount: items.length,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,

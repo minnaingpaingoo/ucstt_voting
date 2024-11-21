@@ -44,8 +44,7 @@ class _VotedListState extends State<VotedList> {
     for (var doc in snapshot.docs) {
       final vote = doc.data();
       try {
-        final selectionDetails = await DatabaseMethods()
-            .getSelectionDetail(vote['CategoryId'], vote['SelectionId']);
+        final selectionDetails = await DatabaseMethods().getSelectionDetail(vote['CategoryId'], vote['SelectionId']);
         tempVotedItems.add({
           ...vote,
           'SelectionName': selectionDetails['Name'] ?? 'No Name',

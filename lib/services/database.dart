@@ -261,7 +261,6 @@ class DatabaseMethods{
       .collection('VoteList')
       .doc(userId)
       .collection('Vote')
-      .orderBy('SelectionCode')
       .snapshots();
   }
 
