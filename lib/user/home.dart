@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -23,15 +24,10 @@ class _HomeState extends State<Home> {
   int queenPage = 0;
   int kingQueenPrincePrincessLastYearPage = 0;
   String? name;
-  final List<Map<String, String>> kingQueenSelection = [
-    {"name": "King: Khun Yar Pyae", "image": "images/king.jpg"},
-    {"name": "Queen: Yamone Htet", "image": "images/queen.jpg"},
-  ];
 
-  final List<Map<String, String>> princePrincessSelection = [
-    {"name": "Prince: Nay Lin Oo", "image": "images/prince.jpg"},
-    {"name": "Princess: Zin Wai Htun", "image": "images/princess.jpg"},
-  ];
+  final List<Map<String, String>> kingQueenSelection = [];
+
+  final List<Map<String, String>> princePrincessSelection =[];
 
   final List<Map<String, String>> kingSelection = [
     {"name": "2nd Year King: Khun Yar Pyae", "image": "images/king.jpg"},
@@ -69,6 +65,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     sharedpref();
+    fetchWinners();
 
     kingController = PageController(initialPage: 0);
     queenController = PageController(initialPage: 0);
@@ -119,6 +116,46 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
+  Future<void> fetchWinners() async {
+    try {
+      // Fetch the King and Queen data
+      DocumentSnapshot kingDoc = await FirebaseFirestore.instance.collection('Winners').doc('King').get();
+      DocumentSnapshot queenDoc = await FirebaseFirestore.instance.collection('Winners').doc('Queen').get();
+
+      if (kingDoc.exists) {
+        kingQueenSelection.add({
+          "name": "King: ${kingDoc['Name']}",
+          "image": kingDoc['Image'],
+        });
+      }
+      if (queenDoc.exists) {
+        kingQueenSelection.add({
+          "name": "Queen: ${queenDoc['Name']}",
+          "image": queenDoc['Image'],
+        });
+      }
+
+      // Fetch the Prince and Princess data
+      DocumentSnapshot princeDoc = await FirebaseFirestore.instance.collection('Winners').doc('Prince').get();
+      DocumentSnapshot princessDoc = await FirebaseFirestore.instance.collection('Winners').doc('Princess').get();
+
+      if (princeDoc.exists) {
+        princePrincessSelection.add({
+          "name": "Prince: ${princeDoc['Name']}",
+          "image": princeDoc['Image'],
+        });
+      }
+      if (princessDoc.exists) {
+        princePrincessSelection.add({
+          "name": "Princess: ${princessDoc['Name']}",
+          "image": princessDoc['Image'],
+        });
+      }
+    } catch (e) {
+      print("Error fetching winners: $e");
+    }
+  }
+
   Widget _bigCard(String title, bool isRevealed, List<Map<String, String>> data) {
     return GestureDetector(
       onTap: () {
@@ -131,42 +168,56 @@ class _HomeState extends State<Home> {
         margin: const EdgeInsets.symmetric(vertical: 10),
         child: Container(
           width: double.infinity,
-          height: 200,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.grey,
+            color: Colors.grey.shade300,
           ),
-          child: isRevealed
-              ? Row(
+          child: !isRevealed && data.isNotEmpty
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      data[0]['image']!,
-                      height: 150,
-                      width: 150,
-                      fit: BoxFit.cover,
+                    // Title at the top
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            title,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    const SizedBox(height: 16),
+                    // Images row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: data.map((item) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Image.network(
+                            item['image']!,
+                            height: 130,
+                            width: 130,
+                            fit: BoxFit.cover,
                           ),
-                          Text(
-                            data[0]['name']!,
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(height: 16),
+                    // Names at the bottom
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: data.map((item) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            item['name']!,
                             style: const TextStyle(
                               fontSize: 16,
+                              fontWeight: FontWeight.w500,
                             ),
+                            textAlign: TextAlign.center,
                           ),
-                        ],
-                      ),
+                        );
+                      }).toList(),
                     ),
                   ],
                 )
@@ -183,6 +234,8 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+
 
   Widget _slider(List<Map<String, String>> selection, PageController controller) {
     return SizedBox(
@@ -320,9 +373,7 @@ class _HomeState extends State<Home> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              _bigCard(
-                  "Prince & Princess", isPrincePrincessRevealed, princePrincessSelection),  
-
+              _bigCard("Prince & Princess", isPrincePrincessRevealed, princePrincessSelection),
               if(name == null)
                 developerAddress(),     
             ],

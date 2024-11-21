@@ -15,6 +15,7 @@ class _VotedListState extends State<VotedList> {
 
   String? id;
 
+
   getthesharedpref() async{
     id= await SharedPreferenceHelper().getUserId();
     setState(() {
@@ -32,7 +33,41 @@ class _VotedListState extends State<VotedList> {
   void initState(){
     super.initState();
     ontheload();
+    loadVotedItems();
   }
+
+  Future<void> loadVotedItems() async {
+    final userId = await SharedPreferenceHelper().getUserId();
+    final snapshot = await DatabaseMethods().fetchVotedList(userId!).first;
+
+    final List<Map<String, dynamic>> tempVotedItems = [];
+    for (var doc in snapshot.docs) {
+      final vote = doc.data();
+      try {
+        final selectionDetails = await DatabaseMethods()
+            .getSelectionDetail(vote['CategoryId'], vote['SelectionId']);
+        tempVotedItems.add({
+          ...vote,
+          'SelectionName': selectionDetails['Name'] ?? 'No Name',
+          'SelectionImage': selectionDetails['Image'] ?? '',
+          'SelectionCode': selectionDetails['Code'] ?? 'No Code',
+        });
+      } catch (e) {
+        // Handle errors (e.g., document not found)
+        tempVotedItems.add({
+          ...vote,
+          'SelectionName': 'Error fetching name',
+          'SelectionImage': '',
+          'SelectionCode': 'Error fetching code',
+        });
+      }
+    }
+
+    setState(() {
+      votedItems = tempVotedItems;
+    });
+  }
+
 
    @override
   Widget build(BuildContext context) {
@@ -58,34 +93,12 @@ class _VotedListState extends State<VotedList> {
           ),
         ),
       ),
-      body: id == null
-    ? const Center(
-        child: CircularProgressIndicator(),
-      )
-    : StreamBuilder(
-        stream: DatabaseMethods().fetchVotedList(id!),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(
-              child: Text(
-                "No Voted List Found",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            );
-          }
-
-          final votedList = snapshot.data!.docs;
-
-          return ListView.builder(
-            padding: const EdgeInsets.all(8.0),
-            itemCount: votedList.length,
+      body: votedItems.isEmpty
+        ? const Center(child: CircularProgressIndicator())
+        : ListView.builder(
+            itemCount: votedItems.length,
             itemBuilder: (context, index) {
-              final vote = votedList[index].data();
-              final voteId = votedList[index].id;
+              final vote = votedItems[index];
               return Card(
                 elevation: 4,
                 margin: const EdgeInsets.symmetric(vertical: 8.0),
@@ -115,14 +128,12 @@ class _VotedListState extends State<VotedList> {
                   ),
                   subtitle: Text(vote['SelectionCode'] ?? 'No Code'),
                   onTap: () {
-                    viewVotedListDetails(voteId, vote);
+                    viewVotedListDetails(vote['SelectionId'], vote);
                   },
                 ),
               );
             },
-          );
-        },
-      ),
+          ),
     );
   }
 

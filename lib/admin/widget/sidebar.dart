@@ -6,7 +6,7 @@ import 'package:ucstt_voting/admin/add_category.dart';
 import 'package:ucstt_voting/admin/add_selection.dart';
 import 'package:ucstt_voting/admin/manage_category.dart';
 import 'package:ucstt_voting/admin/manage_selection.dart';
-import 'package:ucstt_voting/admin/master_setting.dart';
+import 'package:ucstt_voting/admin/master_setting/master_setting.dart';
 import 'package:ucstt_voting/admin/user_list.dart';
 import 'package:ucstt_voting/services/shared_pref.dart';
 import 'package:ucstt_voting/user/bottom_nav/bottomnav.dart';

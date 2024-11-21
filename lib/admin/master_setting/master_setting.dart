@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ucstt_voting/admin/generate_secret_code.dart';
-import 'package:ucstt_voting/admin/secret_code_list.dart';
-import 'package:ucstt_voting/admin/view_all_selections_list.dart';
-import 'package:ucstt_voting/admin/voting_analytics.dart';
+import 'package:ucstt_voting/admin/master_setting/generate_secret_code.dart';
+import 'package:ucstt_voting/admin/master_setting/import_winner_result.dart';
+import 'package:ucstt_voting/admin/master_setting/secret_code_list.dart';
+import 'package:ucstt_voting/admin/master_setting/view_all_selections_list.dart';
+import 'package:ucstt_voting/admin/master_setting/voting_analytics.dart';
 import 'package:ucstt_voting/services/database.dart';
 
 class MasterSetting extends StatefulWidget {
@@ -38,8 +39,25 @@ class _MasterSettingState extends State<MasterSetting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Master Setting'),
+        backgroundColor: Colors.black,
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_outlined,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
+        title: const Text(
+          "Master Setting",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -67,7 +85,7 @@ class _MasterSettingState extends State<MasterSetting> {
               title: "Generate Secret Code",
               description: "Generate Random Secret Code for voting in this system.",
               onTap: () {
-                // Navigate to the user voting analytics page
+                // Navigate to the generate secret code page
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const GenerateSecretCode()));
               },
             ),
@@ -78,7 +96,7 @@ class _MasterSettingState extends State<MasterSetting> {
               title: "Secret Code List",
               description: "View secret code list and approval function by admin.",
               onTap: () {
-                // Navigate to the user voting analytics page
+                // Navigate to the secret code list
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const SecretCodeList()));
               },
             ),
@@ -102,6 +120,17 @@ class _MasterSettingState extends State<MasterSetting> {
               onTap: () {
                 // Navigate to view all selections list
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewAllSelectionsList()));
+              },
+            ),
+            const SizedBox(height: 20),
+
+            buildActionFeature(
+              icon: Icons.import_contacts,
+              title: "Import Winner Result",
+              description: "Import King, Queen, Prince & Princess Result to show the user home page.",
+              onTap: () {
+                // Navigate to the import winnner result
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ImportWinnerResult()));
               },
             ),
             const SizedBox(height: 20),

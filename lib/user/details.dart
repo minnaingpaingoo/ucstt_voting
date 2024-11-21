@@ -96,9 +96,6 @@ class _DetailsState extends State<Details> {
         var secretCodeData = codeSnapshot.docs.first.data() as Map<String, dynamic>;
         String status = secretCodeData['Status'];
 
-        print("Status is");
-        print(status);
-
          if (status == 'Voted') {
           errorMessage = "Your Secret Code is already Voted.";
           ScaffoldMessenger.of(context).showSnackBar(
@@ -116,9 +113,6 @@ class _DetailsState extends State<Details> {
               "UserId": userId,
               "CategoryId": widget.categoryId,
               "SelectionId": widget.selectionId,
-              "SelectionName": widget.name,
-              "SelectionCode": widget.code,
-              "SelectionImage": widget.image,
               "SecretCode": secretCode,
               "VotedAt": FieldValue.serverTimestamp(),
             };

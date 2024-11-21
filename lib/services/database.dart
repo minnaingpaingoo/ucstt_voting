@@ -297,6 +297,22 @@ class DatabaseMethods{
       });
   }
 
+  Future<Map<String, dynamic>> getSelectionDetail(String categoryId, String selectionId) async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection('Categories')
+        .doc(categoryId)
+        .collection('Selections')
+        .doc(selectionId)
+        .get();
+
+    if (snapshot.exists) {
+      return snapshot.data()!;
+    } else {
+      throw Exception("Selection not found");
+    }
+  }
+
+
   Future<QuerySnapshot> getSecretCode(String secretCode) async{
     return await FirebaseFirestore.instance
       .collection('GenerateCode')

@@ -69,9 +69,25 @@ class _ViewAllSelectionsListState extends State<ViewAllSelectionsList> {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-        title: const Text('All Selections List'),
+        backgroundColor: Colors.black,
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_outlined,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
-        titleTextStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize:24),
+        title: const Text(
+          "All Selections List",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Row(
         children: [

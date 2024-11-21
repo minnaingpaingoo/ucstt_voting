@@ -43,17 +43,18 @@ class _VotingAnalyticsState extends State<VotingAnalytics> {
           .collection('VoteList')
           .doc(userId)
           .collection('Vote')
-          .orderBy('SelectionCode')
           .get();
 
       for (var voteDoc in voteDocs.docs) {
         String? categoryName = await DatabaseMethods().getCategoryNameById(voteDoc['CategoryId']);
         String? username = await DatabaseMethods().getUserNameById(voteDoc['UserId']);
+        final selectionDetails = await DatabaseMethods().getSelectionDetail(voteDoc['CategoryId'], voteDoc['SelectionId']);
+
         userVotes.add(
           UserVoteData(
             userName: username!,
             selection: categoryName!,
-            selectionName: voteDoc['SelectionName'],
+            selectionName:  selectionDetails['Name'],
             secretCode: voteDoc['SecretCode'],
           ),
         );
@@ -115,9 +116,25 @@ class _VotingAnalyticsState extends State<VotingAnalytics> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Voting User Analytics'),
+        backgroundColor: Colors.black,
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_outlined,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        title: const Text(
+          "Voting User Analytics",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Column(
         children: [
