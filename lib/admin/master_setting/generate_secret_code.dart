@@ -138,11 +138,11 @@ class _GenerateSecretCodeState extends State<GenerateSecretCode> {
                         }
 
                         int count = int.parse(input);
-                        if (count <= 0) {
+                        if (count <= 0 || count>=100) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text(
-                                'Number must be greater than 0.',
+                                'Number must be greater than 0 or no more than 100.',
                                 style: TextStyle(color: Colors.red),
                               ),
                             ),
