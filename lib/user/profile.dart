@@ -87,10 +87,10 @@ class _ProfileState extends State<Profile> {
     if (confirmDeleteAcc) {
       User? user = FirebaseAuth.instance.currentUser;
       user?.delete();
+      await DatabaseMethods().deleteUser(id!);
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const BottomNav()));
     }
   }
-
 
   void editName(String userId, String userName) async {
     String? updatedName = await showEditNameDialog(context, userId, userName);

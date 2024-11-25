@@ -423,4 +423,11 @@ class DatabaseMethods{
     }
   }
 
+  Future deleteUser(String userId) async{
+    return await FirebaseFirestore.instance
+      .collection("Users")
+      .doc(userId)
+      .delete();
+  }
+
 }
