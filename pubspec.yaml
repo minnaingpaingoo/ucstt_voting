@@ -52,11 +52,8 @@ dependencies:
   mime: ^2.0.0
   file_picker: ^8.1.4
   flutter_spinkit: ^5.2.1
-  flutter_launcher_icons: ^0.14.1
   flutter_native_splash: ^2.4.3
-
-  
-
+  get: ^4.6.6
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -64,19 +61,21 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: "^0.14.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path_android: "assets/logo.png"
+  adaptive_icon_background: "#FFFFFF"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  
 
-flutter_launcher_icons:
-  android: true
-  ios: true
-  image_path: "assets/logo.png"
-  remove_alpha_ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -104,7 +103,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
+  fonts:  
     - family: Poppin
       fonts:
         - asset: fonts/Poppins-SemiBold.ttf

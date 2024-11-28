@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -13,20 +12,21 @@ class _LoadingState extends State<Loading> {
   void initState() {
     super.initState();
 
-    // Use a delayed future to navigate after a short delay
-    Future.delayed(Duration.zero, () {
+    // Delay for 5 seconds before navigating to the next screen
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacementNamed(context, '/onboard');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: SpinKitFadingCube(
-          color: Colors.white,
-          size: 80.0,
+        child: Image.asset(
+          'assets/logo.png',
+          width: 150.0, // Adjust size as needed
+          height: 150.0, // Adjust size as needed
         ),
       ),
     );
