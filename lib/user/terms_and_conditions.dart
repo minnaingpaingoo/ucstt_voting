@@ -41,14 +41,14 @@ class TermsAndConditions extends StatelessWidget {
           const SizedBox(height: 20),
           _sectionTitle("3. Privacy Policy"),
           const Text(
-            "Your data is important to us. Please refer to our Privacy Policy for more details on how your data is managed.\nI value your privacy and am committed to protecting your personal information.",
+            "Your data is important to us. Please refer to our Privacy Policy for more details on how your data is managed.\nWe value your privacy and are committed to protecting your personal information.",
             style: TextStyle(
               fontSize: 16,
             ),
           ),
           const SizedBox(height: 5),
           const Text(
-            "I use your data for the following purposes:",
+            "We use your data for the following purposes:",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -63,7 +63,7 @@ class TermsAndConditions extends StatelessWidget {
           const SizedBox(height: 20),
           _sectionTitle("4. Limitation of Liability"),
           const Text(
-            "I am not liable for any damages or losses that may arise from the use of the app.",
+            "We are not liable for any damages or losses that may arise from the use of the app.",
             style: TextStyle(
               fontSize: 16,
             ),
@@ -71,7 +71,7 @@ class TermsAndConditions extends StatelessWidget {
           const SizedBox(height: 20),
           _sectionTitle("5. Changes to Terms"),
           const Text(
-            "I reserve the right to update these terms at any time. Changes will be effective immediately upon posting.",
+            "We reserve the right to update these terms at any time. Changes will be effective immediately upon posting.",
             style: TextStyle(
               fontSize: 16,
             ),
@@ -79,7 +79,7 @@ class TermsAndConditions extends StatelessWidget {
           const SizedBox(height: 20),
           _sectionTitle("6. Contact Us"),
           const Text(
-            "For questions or concerns regarding these terms, contact me at naingpaingoo@gmail.com.",
+            "For questions or concerns regarding these terms, contact us at admin@ucstt.edu.mm",
             style: TextStyle(
               fontSize: 16,
             ),
