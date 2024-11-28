@@ -209,7 +209,7 @@ class _AddSelectionState extends State<AddSelection> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color:const Color(0xFFececf8),
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextFormField(
@@ -219,8 +219,9 @@ class _AddSelectionState extends State<AddSelection> {
                       border: InputBorder.none,
                       hintText: "Enter Selection Name",
                       hintStyle: TextStyle(
-                         fontSize:15,
-                        fontWeight: FontWeight.w500,
+                        fontSize:15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
                         fontFamily: 'Poppin',
                       ),
                     ),
@@ -243,7 +244,7 @@ class _AddSelectionState extends State<AddSelection> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFececf8),
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextFormField(
@@ -259,8 +260,9 @@ class _AddSelectionState extends State<AddSelection> {
                       border: InputBorder.none,
                       hintText: "Enter Code Number",
                       hintStyle: TextStyle(
-                         fontSize:15,
-                        fontWeight: FontWeight.w500,
+                        fontSize:15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
                         fontFamily: 'Poppin',
                       ),
                     ),
@@ -283,7 +285,7 @@ class _AddSelectionState extends State<AddSelection> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFececf8),
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextFormField(
@@ -294,8 +296,9 @@ class _AddSelectionState extends State<AddSelection> {
                       border: InputBorder.none,
                       hintText: "Enter Info Details",
                       hintStyle: TextStyle(
-                         fontSize:15,
-                        fontWeight: FontWeight.w500,
+                        fontSize:15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
                         fontFamily: 'Poppin',
                       ),
                     ),
@@ -318,7 +321,7 @@ class _AddSelectionState extends State<AddSelection> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color:const Color(0xFFececf8),
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: DropdownButtonHideUnderline(

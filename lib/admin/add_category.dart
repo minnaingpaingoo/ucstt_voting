@@ -96,7 +96,7 @@ class _AddCategoryState extends State<AddCategory> {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFececf8),
+                        color: Colors.grey,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: TextFormField(
@@ -112,7 +112,7 @@ class _AddCategoryState extends State<AddCategory> {
                           hintText: "Enter Category Name",
                           hintStyle: TextStyle(
                             fontSize:15,
-                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
                             fontFamily: 'Poppin',
                           ),
                         ),
