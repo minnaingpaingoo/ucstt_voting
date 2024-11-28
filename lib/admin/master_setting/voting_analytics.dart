@@ -163,12 +163,12 @@ class _VotingAnalyticsState extends State<VotingAnalytics> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(5.0),
             child: TextField(
               onChanged: _filterVotes,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
-                hintText: "Search by username",
+                hintText: "Search by User Name",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),

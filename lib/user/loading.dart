@@ -21,12 +21,27 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey,
       body: Center(
-        child: Image.asset(
-          'assets/logo.png',
-          width: 150.0,
-          height: 150.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "UCSTT King & Queen Voting",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Image.asset(
+              'assets/logo.png',
+              width: 200.0,
+              height: 200.0,
+            ),
+            const SizedBox(height: 10),
+            const CircularProgressIndicator(),
+          ],
         ),
       ),
     );

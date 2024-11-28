@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ucstt_voting/services/database.dart';
-import 'package:ucstt_voting/widgets/widget_support.dart';
 
 class AddSelection extends StatefulWidget {
   const AddSelection({super.key});
@@ -210,16 +209,20 @@ class _AddSelectionState extends State<AddSelection> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFececf8),
+                    color:const Color(0xFFececf8),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextFormField(
                     controller: nameController,
                     validator: (value) => value == null || value.isEmpty ? 'Please enter selection name' : null,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter Selection Name",
-                      hintStyle: AppWidget.lightTextFieldStyle(),
+                      hintStyle: TextStyle(
+                         fontSize:15,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Poppin',
+                      ),
                     ),
                   ),
                 ),
@@ -252,10 +255,14 @@ class _AddSelectionState extends State<AddSelection> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter Code Number",
-                      hintStyle: AppWidget.lightTextFieldStyle(),
+                      hintStyle: TextStyle(
+                         fontSize:15,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Poppin',
+                      ),
                     ),
                   ),
                 ),
@@ -283,10 +290,14 @@ class _AddSelectionState extends State<AddSelection> {
                     maxLines: 6,
                     controller: detailsController,
                     validator: (value) => value == null || value.isEmpty ? 'Please enter info details' : null,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter Info Details",
-                      hintStyle: AppWidget.lightTextFieldStyle(),
+                      hintStyle: TextStyle(
+                         fontSize:15,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Poppin',
+                      ),
                     ),
                   ),
                 ),

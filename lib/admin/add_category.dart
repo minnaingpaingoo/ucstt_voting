@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ucstt_voting/services/database.dart';
-import 'package:ucstt_voting/widgets/widget_support.dart';
     
 class AddCategory extends StatefulWidget {
   const AddCategory({super.key});
@@ -108,10 +107,14 @@ class _AddCategoryState extends State<AddCategory> {
                           }
                           return null;
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: "Enter Category Name",
-                          hintStyle: AppWidget.lightTextFieldStyle(),
+                          hintStyle: TextStyle(
+                            fontSize:15,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Poppin',
+                          ),
                         ),
                       ),
                     ),
