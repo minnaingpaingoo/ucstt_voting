@@ -3,8 +3,7 @@
     <application
         android:label="UCSTT Voting 2024-2025"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:theme="@style/LaunchTheme">
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"
