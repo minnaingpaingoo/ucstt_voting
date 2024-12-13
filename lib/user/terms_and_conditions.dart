@@ -79,7 +79,7 @@ class TermsAndConditions extends StatelessWidget {
           const SizedBox(height: 20),
           _sectionTitle("6. Contact Us"),
           const Text(
-            "For questions or concerns regarding these terms, contact us at admin@ucstt.edu.mm",
+            "For questions or concerns regarding these terms, contact us at naingpaingoo@gmail.com",
             style: TextStyle(
               fontSize: 16,
             ),

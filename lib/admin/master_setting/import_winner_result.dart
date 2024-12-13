@@ -93,7 +93,7 @@ class _ImportWinnerResultState extends State<ImportWinnerResult> {
   Future<void> saveWinner() async {
     if (selectedCategory == null || selectedName == null || selectedTitle == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please select category, name, and title", style: TextStyle(color: Colors.redAccent))),
+        const SnackBar(content: Text("Please select required information (Title, Category Name and Winner Name)", style: TextStyle(color: Colors.redAccent))),
       );
       return;
     }

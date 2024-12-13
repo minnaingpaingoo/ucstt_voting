@@ -115,7 +115,7 @@ class _GenerateSecretCodeState extends State<GenerateSecretCode> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Enter number (e.g., 100)',
+                hintText: 'Enter number between 1 to 100',
               ),
             ),
             const SizedBox(height: 20),

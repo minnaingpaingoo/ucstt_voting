@@ -227,6 +227,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       fontSize: 50,
                       fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -289,7 +290,7 @@ class _HomeState extends State<Home> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Developed by: UCSTT",
+              "Developed by: Min Naing Paing Oo",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white, // Text color
@@ -299,7 +300,7 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(height: 8),
             Text(
-              "Contact: admin@ucstt.edu.mm",
+              "Contact: naingpaingoo@gmail.com",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white, // Text color

@@ -86,32 +86,37 @@ class _SecretCodeListState extends State<SecretCodeList> {
 
       pdf.addPage(
         pw.Page(
-          build: (pw.Context context) => pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: [
+          build: (pw.Context context) {
+            // Generate list of secret codes
+            final codeWidgets = <pw.Widget>[
               pw.Text(
                 "Secret Code List",
                 style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold),
               ),
               pw.SizedBox(height: 20),
-              pw.ListView.builder(
-                itemCount: secretCodes.length,
-                itemBuilder: (context, index) {
-                  final codeData = secretCodes[index].data();
-                  final secretCode = secretCodes[index].id;
+            ];
 
-                  return pw.Padding(
-                    padding: const pw.EdgeInsets.symmetric(vertical: 8),
-                    child: pw.Text(
-                      "Code: $secretCode\n"
-                      "Status: ${codeData['Status'] ?? 'Unknown'}\n",
-                      style: const pw.TextStyle(fontSize: 18),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+            for (final doc in secretCodes) {
+              final codeData = doc.data();
+              final secretCode = doc.id;
+
+              codeWidgets.add(
+                pw.Padding(
+                  padding: const pw.EdgeInsets.symmetric(vertical: 8),
+                  child: pw.Text(
+                    "Code: $secretCode\n"
+                    "Status: ${codeData['Status'] ?? 'Unknown'}",
+                    style: const pw.TextStyle(fontSize: 18),
+                  ),
+                ),
+              );
+            }
+
+            return pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: codeWidgets,
+            );
+          },
         ),
       );
 
