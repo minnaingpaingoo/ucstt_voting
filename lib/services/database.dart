@@ -367,6 +367,16 @@ class DatabaseMethods{
       .get();
   }
 
+  Future<bool> hasAlreadyVoted(String userId, String categoryId) async {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('VoteList')
+        .doc(userId)
+        .collection('Vote')
+        .where('CategoryId', isEqualTo: categoryId)
+        .get();
+
+    return querySnapshot.docs.isNotEmpty; // Returns true if the category exists
+  }
   Future closeVote(bool status) async{
     return await FirebaseFirestore.instance
       .collection('CloseVote')

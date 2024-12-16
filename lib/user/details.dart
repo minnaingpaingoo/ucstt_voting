@@ -107,8 +107,18 @@ class _DetailsState extends State<Details> {
             SnackBar(content: Text(errorMessage, style: const TextStyle(color: Colors.redAccent, fontSize: 18))),
           );
         }
-         else if (status == 'Done') {
-          
+        else if (status == 'Done') {
+
+          bool alreadyVoted = await DatabaseMethods().hasAlreadyVoted(userId!, widget.categoryId);
+         
+          if(alreadyVoted){
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("The Category has already been voted. Please try another.", style: TextStyle(color: Colors.redAccent, fontSize: 18)),
+                duration: Duration(seconds: 2),
+              ),
+            );
+          }else{
             final voteData = {
               "UserId": userId,
               "CategoryId": widget.categoryId,
@@ -126,6 +136,7 @@ class _DetailsState extends State<Details> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Your vote was submitted successfully!", style: TextStyle(color: Colors.green, fontSize: 18))),
             );
+          }
 
         } else {
           errorMessage = "Invalid status for Secret Code.";

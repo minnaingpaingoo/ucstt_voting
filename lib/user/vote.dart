@@ -135,9 +135,9 @@ class _VoteState extends State<Vote> {
           return const Center(child: Text("No Selection Found"));
         }else{
           return SizedBox(
-            height: 400,
+            height: 450,
             child: ListView.builder(
-              padding: const EdgeInsets.only(bottom: 30),
+              padding: const EdgeInsets.only(bottom: 10),
               itemCount: items.length,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,

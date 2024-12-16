@@ -593,16 +593,16 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 10),
           infoRow(
             icon: Icons.home,
-            title: "Developed by UCSTT",
-            value: "admin@ucstt.edu.mm",
+            title: "Developed by Min Naing Paing Oo",
+            value: "naingpaingoo@gmail.com",
           ),
           const SizedBox(height: 10),
-          buildActionRow(
-            icon: Icons.delete,
-            label: "Delete Account",
-            onTap: () => deleteAccount(context),
-          ),
-          const SizedBox(height: 10),
+          // buildActionRow(
+          //   icon: Icons.delete,
+          //   label: "Delete Account",
+          //   onTap: () => deleteAccount(context),
+          // ),
+          // const SizedBox(height: 10),
         ],
       ),
     );
