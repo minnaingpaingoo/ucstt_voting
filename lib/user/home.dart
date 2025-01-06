@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
     {"name": "QS5: Thet Htar Su", "image": "images/QS_5 Thet Htar Su.jpg"},
     {"name": "QS6: Han Chi Htet", "image": "images/QS_6 Han Chi Htet.jpg"},
     {"name": "QS7: Hnin Yu Yu Lwin", "image": "images/QS_7 Hnin Yu Yu Lwin.jpg"},
-    {"name": "QS8: Hsu Myat Naingq", "image": "images/QS_8 Hsu Myat Naing.jpg"},
+    {"name": "QS8: Hsu Myat Naing", "image": "images/QS_8 Hsu Myat Naing.jpg"},
   ];
 
   final List<Map<String, String>> kingQueenPrincePrincessLastYear = [
