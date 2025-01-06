@@ -30,21 +30,25 @@ class _HomeState extends State<Home> {
   final List<Map<String, String>> princePrincessSelection =[];
 
   final List<Map<String, String>> kingSelection = [
-    {"name": "2nd Year King: Khun Yar Pyae", "image": "images/king.jpg"},
-    {"name": "2nd Year Prince: Nay Lin Oo", "image": "images/prince.jpg"},
-    {"name": "3rd Year King: Seckyar Thurein Thee", "image": "images/seckyar_thurein_thee.jpg"},
-    {"name": "3rd Year Prince: Kaung Htet Thu", "image": "images/kaung_htet_thu.jpg"},
-    {"name": "3rd Year King: Nyam Htet", "image": "images/nyam_htet.jpg"},
-    {"name": "3rd Year Prince: Kyaw Zin Win", "image": "images/kyaw_zin_win.jpg"},
+    {"name": "KS1: Sai Aung Nay Thu", "image": "images/KS_1 Sai Aung Nay Thu.jpg"},
+    {"name": "KS2: Aung Zin Phyo", "image": "images/KS_2 Aung Zin Phyo.jpg"},
+    {"name": "KS3: Yair Linn Aung", "image": "images/KS_3 Yair Linn Aung.jpg"},
+    {"name": "KS4: Paing Khant Thu", "image": "images/KS_4 Paing Khant Thu.jpg"},
+    {"name": "KS5: Shine Linn Htet", "image": "images/KS_5 Shine Linn Htet.jpg"},
+    {"name": "KS6: Htun Win Aye", "image": "images/KS_6 Htun Win Aye.jpg"},
+    {"name": "KS7: Lin Khant Ko", "image": "images/KS_7 Lin Khant Ko.jpg"},
+    {"name": "KS8: Lin Khant Thu", "image": "images/KS_8 Lin Khant Thu.jpg"},
   ];
 
   final List<Map<String, String>> queenSelection = [
-    {"name": "2nd Year Queen: Yamone Htet", "image": "images/queen.jpg"},
-    {"name": "2nd Year Princess: Zin Wai Htun", "image": "images/princess.jpg"},
-    {"name": "3rd Year Queen: Htet Htet Yamin Oo", "image": "images/htet_htet_yamin_oo.jpg"},
-    {"name": "3rd Year Princess: Moe Moe Htet", "image": "images/moe_moe_htet.jpg"},
-    {"name": "3rd Year Queen: Nway Thuzar Hlaing", "image": "images/nway_thuzar_hlaing.jpg"},
-    {"name": "3rd Year Princess: Shoon Lei Phyu", "image": "images/shoon_lei_phyu.jpg"},
+    {"name": "QS1: Yadanar Aung", "image": "images/QS_1 Yadanar Aung.jpg"},
+    {"name": "QS2: Su Pone Chit", "image": "images/QS_2 Su Pone Chit.jpg"},
+    {"name": "QS3: Pwint Yamone Zaw", "image": "images/QS_3 Pwint Yamone Zaw.jpg"},
+    {"name": "QS4: Aie Thar Khu", "image": "images/QS_4 Aie Thar Khu.jpg"},
+    {"name": "QS5: Thet Htar Su", "image": "images/QS_5 Thet Htar Su.jpg"},
+    {"name": "QS6: Han Chi Htet", "image": "images/QS_6 Han Chi Htet.jpg"},
+    {"name": "QS7: Hnin Yu Yu Lwin", "image": "images/QS_7 Hnin Yu Yu Lwin.jpg"},
+    {"name": "QS8: Hsu Myat Naingq", "image": "images/QS_8 Hsu Myat Naing.jpg"},
   ];
 
   final List<Map<String, String>> kingQueenPrincePrincessLastYear = [
